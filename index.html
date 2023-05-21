@@ -10,53 +10,81 @@
     <title>Sign Up</title>
 
     <!-- external css -->
-    <link rel="stylesheet" href="css/styles.css?v=1.1">
+    <link rel="stylesheet" href="css/styles.css?v=1.1.2">
     <!-- external js -->
     <script src="scripts/script.js"></script>
 </head>
 
-<body>
+<body onload="enableSubmit()">
     <form action="scripts/script.php" method="post">
         <div class="container">
             <h1>Sign Up</h1>
             <div class="form-fields">
                 <div class="form-control">
                     <label for="fname">First Name<span>*</span></label>
-                    <input id="fname" type="text" placeholder="First Name" name="fname" required onkeyup="nameValidation(this.value,'fname')">
+                    <input id="fname" type="text" placeholder="First Name" name="fname" required
+                        onkeyup="nameValidation(this.value,'fname')">
                     <span></span>
                 </div>
                 <div class="form-control">
                     <label for="lname">Last Name<span>*</span></label>
-                    <input id="lname" type="text" placeholder="Last Name" name="lname" required onkeyup="nameValidation(this.value,'lname')">
+                    <input id="lname" type="text" placeholder="Last Name" name="lname" required
+                        onkeyup="nameValidation(this.value,'lname')">
                     <span></span>
                 </div>
                 <div class="form-control">
                     <label for="email">Email Address<span>*</span></label>
-                    <input id="email" type="email" placeholder="Email" name="email" required onkeyup="emailValidation(this.value)">
+                    <input id="email" type="email" placeholder="Email" name="email" required
+                        onkeyup="emailValidation(this.value)">
                     <span></span>
                 </div>
                 <div class="form-control">
                     <label for="pnumber">Phone Number<span>*</span></label>
-                    <input id="pnumber" type="tel" placeholder="Phone" name="pnumber" required onkeyup="phoneValidation(this.value)">
+                    <input id="pnumber" type="tel" placeholder="Phone" name="pnumber" required
+                        onkeyup="phoneValidation(this.value)">
                     <span></span>
                 </div>
                 <div class="form-control">
                     <label for="password">Password<span>*</span></label>
-                    <input type="password" placeholder="Password" name="password" required>
+                    <input id="password" type="password" placeholder="Password" name="password" required
+                        onkeyup="passwordValidation(this.value)">
                     <span></span>
                 </div>
                 <div class="form-control">
                     <label for="confirm-password">Confirm Password<span>*</span></label>
-                    <input type="password" placeholder="Re-enter Password" name="confirm-password" required>
+                    <input id="confirm-password" type="password" placeholder="Re-enter Password" name="confirm-password"
+                        required onkeyup="repeatPasswordValidation(this.value)">
                     <span></span>
                 </div>
                 <div class="form-control">
-                    <input type="submit" name="submit">
+                    <input id="submit" type="submit" name="submit" disabled>
                 </div>
             </div>
         </div>
     </form>
 
 </body>
+<script>
+    function enableSubmit() {
+        var button = document.getElementById("submit");
+        button.style.cursor = "not-allowed";
+        button.style.opacity = "0.5"
+        button.title = "Please enter valid data in all mandatory fields";
+        if (Object.values(validFields).every(value => value === true)) {
+            // all fields are valid so enable submit button
+            button.disabled = false;
+            button.style.cursor = "";
+            button.style.opacity = "";
+            button.title = "Submit";
+            clearInterval(intervalId);
+        }
+        else {
+            button.style.cursor = "not-allowed";
+            button.style.opacity = "0.5"
+            button.title = "Please enter valid data in all mandatory fields";
+            var intervalId = setInterval(enableSubmit, 1000);
+        }
+    }
+</script>
 
 </html>

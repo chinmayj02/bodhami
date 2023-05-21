@@ -96,3 +96,11 @@ input[type=submit] {
     margin-bottom: 5px;
     height: 9px;
 }
+.warningTextBig{
+    color:red;
+    font-size: 9px;
+    background-color: transparent;
+    margin-left: 5px;
+    margin-bottom: 15px;
+    height: 18px;
+}

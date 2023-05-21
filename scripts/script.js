@@ -26,6 +26,7 @@ function nameValidation(str, id) {
             inputField.style.borderColor = "green";
             spanElement.textContent = '';
             validFields[id] = true;
+            spanElement.classList.remove("warningText");
         }
         else {
             inputField.style.borderColor = "red";
@@ -49,6 +50,7 @@ function emailValidation(str) {
         inputField.style.borderColor = "green";
         spanElement.textContent = '';
         validFields["email"] = true;
+        spanElement.classList.remove("warningText");
     }
     else {
         inputField.style.borderColor = "red";
@@ -73,10 +75,13 @@ function phoneValidation(str) {
     }
     if (/^(?!0)[+]?(\d{13}|\d{10})$/.test(str)) {
         inputField.style.borderColor = "green";
+        spanElement.textContent = '';
         validFields["pnumber"] = true;
+        spanElement.classList.remove("warningText");
     }
     else {
         inputField.style.borderColor = "red";
+        spanElement.textContent = 'Phone number not valid';
         validFields["pnumber"] = false;
     }
 }
@@ -84,7 +89,69 @@ function phoneValidation(str) {
 // a. Min length - 6
 // b. Should contain at-least one alphabet, one number, one char among @#$&!
 function passwordValidation(str) {
+    var inputField = document.querySelector("#password");
+    var spanElement = document.querySelector('#password + span');
+    spanElement.classList.add("warningTextBig");
+    if (str == '' || /^[\s]+$/.test(str)) {
+        inputField.style.borderColor = "red";
+        spanElement.textContent = 'Field cannot be empty';
+        validFields["password"] = false;
+    }
+    if (/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@#$&!]).{6,}$/.test(str)) {
+        inputField.style.borderColor = "green";
+        spanElement.textContent = '';
+        validFields["password"] = true;
+        spanElement.classList.remove("warningTextBig");
+    }
+    else {
+        inputField.style.borderColor = "red";
+        spanElement.textContent = 'Password must be 6 characters long and contain at least one alphabet,one number and one special character among @#$&!';
+        validFields["password"] = false;
+    }
+    // if (!/[a-zA-Z]/.test(str)) {
+    //     inputField.style.borderColor = "red";
+    //     spanElement.textContent = "Password must contain at least one alphabet.";
+    //     validFields["password"] = false;
+    // }
 
+    // if (!/\d/.test(str)) {
+    //     inputField.style.borderColor = "red";
+    //     spanElement.textContent = "Password must contain at least one number.";
+    //     validFields["password"] = false;
+    // }
+    // if (!/[@#$&!]/.test(str)) {
+    //     inputField.style.borderColor = "red";
+    //     spanElement.textContent = "Password must contain at least one special character among @#$&!";
+    //     validFields["password"] = false;
+    // }
+    // if(/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@#$&!]).{6,}$/.test(str)){
+    // inputField.style.borderColor = "green";
+    // spanElement.textContent = '';
+    // validFields["password"] = true;
+    // }
 }
+
 // Repeat Password
 // a. Should match with the Password field
+function repeatPasswordValidation(str) {
+    var inputField = document.querySelector("#confirm-password");
+    var spanElement = document.querySelector('#confirm-password + span');
+    spanElement.classList.add("warningText");
+    var password=document.querySelector("#password").value;
+    if (str == '' || /^[\s]+$/.test(str)) {
+        inputField.style.borderColor = "red";
+        spanElement.textContent = 'Field cannot be empty';
+        validFields["password"] = false;
+    }
+    if(str==password){
+        inputField.style.borderColor = "green";
+        spanElement.textContent = '';
+        validFields["confirm-password"] = true;
+        spanElement.classList.remove("warningText");
+    }
+    else{
+        inputField.style.borderColor = "red";
+        spanElement.textContent = 'Password not matching';
+        validFields["confirm-password"] = false;
+    }
+}

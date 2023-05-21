@@ -7,9 +7,10 @@
     } 
 
     if(isset($_POST['submit'])){
+        $password=md5($_POST['confirm-password']);
         mysqli_query($conn,
         "insert into users (fname,lname,email,phone,password) 
-        values ('{$_POST['fname']}','{$_POST['lname']}','{$_POST['email']}','{$_POST['pnumber']}','{$_POST['confirm-password']}')") or die(mysqli_error($conn));
+        values ('{$_POST['fname']}','{$_POST['lname']}','{$_POST['email']}','{$_POST['pnumber']}','$password')") or die(mysqli_error($conn));
         header("location:../welcome.html");
     }
 ?>  
