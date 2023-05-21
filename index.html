@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sign up form created as a task for intern selection process at Bodhami">
+    <meta name="author" content="Chinmay Joshi">
+    <title>Sign Up</title>
+
+    <!-- external css -->
+    <link rel="stylesheet" href="css/styles.css?v=1.1">
+    <!-- external js -->
+    <script src="scripts/script.js"></script>
+</head>
+
+<body>
+    <form action="scripts/script.php" method="post">
+        <div class="container">
+            <h1>Sign Up</h1>
+            <div class="form-fields">
+                <div class="form-control">
+                    <label for="fname">First Name<span>*</span></label>
+                    <input id="fname" type="text" placeholder="First Name" name="fname" required onkeyup="nameValidation(this.value,'fname')">
+                    <span></span>
+                </div>
+                <div class="form-control">
+                    <label for="lname">Last Name<span>*</span></label>
+                    <input id="lname" type="text" placeholder="Last Name" name="lname" required onkeyup="nameValidation(this.value,'lname')">
+                    <span></span>
+                </div>
+                <div class="form-control">
+                    <label for="email">Email Address<span>*</span></label>
+                    <input id="email" type="email" placeholder="Email" name="email" required onkeyup="emailValidation(this.value)">
+                    <span></span>
+                </div>
+                <div class="form-control">
+                    <label for="pnumber">Phone Number<span>*</span></label>
+                    <input id="pnumber" type="tel" placeholder="Phone" name="pnumber" required onkeyup="phoneValidation(this.value)">
+                    <span></span>
+                </div>
+                <div class="form-control">
+                    <label for="password">Password<span>*</span></label>
+                    <input type="password" placeholder="Password" name="password" required>
+                    <span></span>
+                </div>
+                <div class="form-control">
+                    <label for="confirm-password">Confirm Password<span>*</span></label>
+                    <input type="password" placeholder="Re-enter Password" name="confirm-password" required>
+                    <span></span>
+                </div>
+                <div class="form-control">
+                    <input type="submit" name="submit">
+                </div>
+            </div>
+        </div>
+    </form>
+
+</body>
+
+</html>
