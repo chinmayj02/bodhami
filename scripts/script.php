@@ -8,9 +8,21 @@
 
     if(isset($_POST['submit'])){
         $password=md5($_POST['confirm-password']);
+        $email=$_POST['email'];
+        $check=mysqli_query($conn,"select email from users where email='$email'");
+        if(mysqli_num_rows($check)>0){
+            // user already exists
+            header("location:../index.html?error=user_exists");
+            exit();
+        }
         mysqli_query($conn,
         "insert into users (fname,lname,email,phone,password) 
         values ('{$_POST['fname']}','{$_POST['lname']}','{$_POST['email']}','{$_POST['pnumber']}','$password')") or die(mysqli_error($conn));
-        header("location:../welcome.html");
+        header("location:../welcome.html?user=" . urlencode($email));
     }
-?>  
+    if(isset($_REQUEST['user'])){
+        $user=$_REQUEST['user'];
+        $sql=mysqli_fetch_array(mysqli_query($conn,"select fname,lname,phone from users where email='$user'"));
+        $myJSON = json_encode($sql);
+        echo $myJSON;    
+    }

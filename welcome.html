@@ -6,8 +6,28 @@
     <meta name="description" content="Sign up form created as a task for intern selection process at Bodhami">
     <meta name="author" content="Chinmay Joshi">
     <title>Welcome</title>
+    <script>
+        localStorage.clear();
+        const urlParams = new URLSearchParams(window.location.search);
+        const user = urlParams.get('user');
+    </script>
 </head>
-<body>
-    Welcome USer!
+<body onload="fetchData()">
+    <h1>Welcome <span>User</span> !</h1>
 </body>
+<script>
+    function fetchData(){
+        // console.log(user);
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var myObj = JSON.parse(this.responseText);
+                var nameSpan=document.querySelector("h1 span");
+                nameSpan.innerHTML=myObj['fname'];                
+            }
+        };
+        xmlhttp.open("POST", "scripts/script.php?user=" + user, true);
+        xmlhttp.send();
+    }
+</script>
 </html>

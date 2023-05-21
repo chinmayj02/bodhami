@@ -19,6 +19,7 @@ function nameValidation(str, id) {
         inputField.style.borderColor = "red";
         spanElement.textContent = 'Field cannot be empty';
         validFields[id] = false;
+        localStorage.removeItem(id);
     }
     else {
         // number or special characters
@@ -26,12 +27,14 @@ function nameValidation(str, id) {
             inputField.style.borderColor = "green";
             spanElement.textContent = '';
             validFields[id] = true;
+            localStorage.setItem(id, str);
             spanElement.classList.remove("warningText");
         }
         else {
             inputField.style.borderColor = "red";
             spanElement.textContent = 'Field cannot contain numbers or special characters';
             validFields[id] = false;
+            localStorage.removeItem(id);
         }
     }
 }
@@ -45,17 +48,20 @@ function emailValidation(str) {
         inputField.style.borderColor = "red";
         spanElement.textContent = 'Field cannot be empty';
         validFields["email"] = false;
+        localStorage.removeItem('email');
     }
     if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(str)) {
         inputField.style.borderColor = "green";
         spanElement.textContent = '';
         validFields["email"] = true;
+        localStorage.setItem('email', str);
         spanElement.classList.remove("warningText");
     }
     else {
         inputField.style.borderColor = "red";
         spanElement.textContent = 'Email not valid';
         validFields["email"] = false;
+        localStorage.removeItem('email');
     }
 }
 // Phone number -
@@ -72,17 +78,20 @@ function phoneValidation(str) {
         inputField.style.borderColor = "red";
         spanElement.textContent = 'Field cannot be empty';
         validFields["pnumber"] = false;
+        localStorage.removeItem('pnumber');
     }
     if (/^(?!0)[+]?(\d{13}|\d{10})$/.test(str)) {
         inputField.style.borderColor = "green";
         spanElement.textContent = '';
         validFields["pnumber"] = true;
+        localStorage.setItem('pnumber', str);
         spanElement.classList.remove("warningText");
     }
     else {
         inputField.style.borderColor = "red";
         spanElement.textContent = 'Phone number not valid';
         validFields["pnumber"] = false;
+        localStorage.removeItem('pnumber');
     }
 }
 // Password
