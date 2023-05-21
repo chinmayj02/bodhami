@@ -10,18 +10,22 @@ h1,
 label {
     background-color: transparent;
 }
-h1{
+
+h1 {
     margin-top: 30px;
 }
-label{
+
+label {
     margin-left: 5px;
 }
-label > span {
-    color:red;
+
+label>span {
+    color: red;
     /* font-size: 9px; */
     background-color: transparent;
     margin-left: 3px;
 }
+
 .container {
     width: 375px;
     height: 95vh;
@@ -43,7 +47,7 @@ label > span {
     justify-content: space-between;
     align-items: flex-start;
     background-color: transparent;
-    padding:20px;
+    padding: 20px;
 }
 
 .form-control {
@@ -75,7 +79,7 @@ input {
     transition: .2s ease-in-out;
 }
 
-input:focus{
+input:focus {
     font-size: smaller;
 }
 
@@ -88,16 +92,17 @@ input[type=submit] {
     margin-bottom: 20px;
 }
 
-.warningText{
-    color:red;
+.warningText {
+    color: red;
     font-size: 9px;
     background-color: transparent;
     margin-left: 5px;
     margin-bottom: 5px;
     height: 9px;
 }
-.warningTextBig{
-    color:red;
+
+.warningTextBig {
+    color: red;
     font-size: 9px;
     background-color: transparent;
     margin-left: 5px;

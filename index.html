@@ -8,7 +8,6 @@
     <meta name="description" content="Sign up form created as a task for intern selection process at Bodhami">
     <meta name="author" content="Chinmay Joshi">
     <title>Sign Up</title>
-
     <!-- external css -->
     <link rel="stylesheet" href="css/styles.css?v=1.1.2">
     <!-- external js -->
@@ -62,28 +61,24 @@
             </div>
         </div>
     </form>
-
 </body>
 <script>
     function enableSubmit() {
+        // get error from the url
         const urlParams = new URLSearchParams(window.location.search);
         const error = urlParams.get('error');
-
         if (error === 'user_exists') {
             // user already exists
-            
             alert("User already exists. Please change your email.");
-
             // Retrieve the previously entered form data from local storage
             const fname = localStorage.getItem('fname');
             const lname = localStorage.getItem('lname');
             const pnumber = localStorage.getItem('pnumber');
-
+            // clear the error parameter from url to make it look better
             const currentUrl = window.location.href;
             const updatedUrl = currentUrl.replace('?error=user_exists', '');
             window.history.replaceState({}, document.title, updatedUrl);
-
-
+            // pre fill the form with previous data
             document.getElementById('fname').value = fname;
             validFields["fname"] = true;
             document.getElementById('lname').value = lname;
@@ -91,11 +86,12 @@
             document.getElementById('pnumber').value = pnumber;
             validFields["pnumber"] = true;
         }
+        // disable submit button until all fields are valid
         var button = document.getElementById("submit");
         button.style.cursor = "not-allowed";
         button.style.opacity = "0.5"
         button.title = "Please enter valid data in all mandatory fields";
-        // console.log(validFields);
+        // check if fields are valid
         if (Object.values(validFields).every(value => value === true)) {
             // all fields are valid so enable submit button
             button.disabled = false;
@@ -111,9 +107,6 @@
             var intervalId = setInterval(enableSubmit, 1000);
         }
     }
-
-
-    // enableSubmit();
 </script>
 
 </html>

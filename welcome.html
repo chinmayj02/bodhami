@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,43 +9,47 @@
     <title>Welcome</title>
     <link rel="stylesheet" href="css/welcome.css">
     <script>
+        // clear the form data from localstorage
         localStorage.clear();
+        // get required user email from url
         const urlParams = new URLSearchParams(window.location.search);
         const user = urlParams.get('user');
     </script>
 </head>
+
 <body onload="fetchData()">
     <div class="container">
         <div class="profile">
-          <h1>Welcome <span>User</span> !</h1>
-          <ul>
-            <li id="name"></li>
-            <li id="email"></li>
-            <li id="pnumber"></li>
-          </ul>
+            <h1>Welcome <span>User</span> !</h1>
+            <ul>
+                <li id="name"></li>
+                <li id="email"></li>
+                <li id="pnumber"></li>
+            </ul>
         </div>
-      </div>
-    
+    </div>
+
 </body>
 <script>
-    function fetchData(){
-        // console.log(user);
+    function fetchData() {
+        // http request to fetch user data
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 var myObj = JSON.parse(this.responseText);
-                var element=document.querySelector("h1 span");
-                element.innerHTML=myObj['fname'];                
-                var element=document.querySelector("#name");
-                element.innerHTML=myObj['fname']+" "+myObj['lname'];                
-                var element=document.querySelector("#email");
-                element.innerHTML=user;                
-                var element=document.querySelector("#pnumber");
-                element.innerHTML=myObj['phone'];                
+                var element = document.querySelector("h1 span");
+                element.innerHTML = myObj['fname'];
+                var element = document.querySelector("#name");
+                element.innerHTML = myObj['fname'] + " " + myObj['lname'];
+                var element = document.querySelector("#email");
+                element.innerHTML = user;
+                var element = document.querySelector("#pnumber");
+                element.innerHTML = myObj['phone'];
             }
         };
         xmlhttp.open("POST", "scripts/script.php?user=" + user, true);
         xmlhttp.send();
     }
 </script>
+
 </html>

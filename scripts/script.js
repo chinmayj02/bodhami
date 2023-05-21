@@ -146,19 +146,19 @@ function repeatPasswordValidation(str) {
     var inputField = document.querySelector("#confirm-password");
     var spanElement = document.querySelector('#confirm-password + span');
     spanElement.classList.add("warningText");
-    var password=document.querySelector("#password").value;
+    var password = document.querySelector("#password").value;
     if (str == '' || /^[\s]+$/.test(str)) {
         inputField.style.borderColor = "red";
         spanElement.textContent = 'Field cannot be empty';
         validFields["password"] = false;
     }
-    if(str==password){
+    if (str == password) {
         inputField.style.borderColor = "green";
         spanElement.textContent = '';
         validFields["confirm-password"] = true;
         spanElement.classList.remove("warningText");
     }
-    else{
+    else {
         inputField.style.borderColor = "red";
         spanElement.textContent = 'Password not matching';
         validFields["confirm-password"] = false;
