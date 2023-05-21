@@ -6,6 +6,7 @@
     <meta name="description" content="Sign up form created as a task for intern selection process at Bodhami">
     <meta name="author" content="Chinmay Joshi">
     <title>Welcome</title>
+    <link rel="stylesheet" href="css/welcome.css">
     <script>
         localStorage.clear();
         const urlParams = new URLSearchParams(window.location.search);
@@ -13,7 +14,17 @@
     </script>
 </head>
 <body onload="fetchData()">
-    <h1>Welcome <span>User</span> !</h1>
+    <div class="container">
+        <div class="profile">
+          <h1>Welcome <span>User</span> !</h1>
+          <ul>
+            <li id="name"></li>
+            <li id="email"></li>
+            <li id="pnumber"></li>
+          </ul>
+        </div>
+      </div>
+    
 </body>
 <script>
     function fetchData(){
@@ -22,8 +33,14 @@
         xmlhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 var myObj = JSON.parse(this.responseText);
-                var nameSpan=document.querySelector("h1 span");
-                nameSpan.innerHTML=myObj['fname'];                
+                var element=document.querySelector("h1 span");
+                element.innerHTML=myObj['fname'];                
+                var element=document.querySelector("#name");
+                element.innerHTML=myObj['fname']+" "+myObj['lname'];                
+                var element=document.querySelector("#email");
+                element.innerHTML=user;                
+                var element=document.querySelector("#pnumber");
+                element.innerHTML=myObj['phone'];                
             }
         };
         xmlhttp.open("POST", "scripts/script.php?user=" + user, true);
